@@ -1,0 +1,35 @@
+name: quran_pro
+version: 1.0.0+1
+publish_to: none
+description: A new Flutter project.
+environment: 
+  sdk: '>=2.18.5 <3.0.0'
+
+dependencies: 
+  cupertino_icons: ^1.0.2
+  get: 4.6.5
+  google_fonts: 4.0.3
+  flutter_svg: ^1.1.6
+  dio: 5.1.0
+  get_storage: 2.1.1
+  just_audio: 0.9.32
+  flutter_plugin_android_lifecycle: ^2.0.0
+  sqflite: 2.2.6
+  path_provider: 2.0.14
+  equatable: 2.0.5
+  http: 0.13.5
+  flutter: 
+    sdk: flutter
+
+dev_dependencies: 
+  flutter_lints: ^2.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  assets: 
+    - assets/svgs/
+    - assets/datas/
+    - assets/datas/surah/
+  uses-material-design: true
+
