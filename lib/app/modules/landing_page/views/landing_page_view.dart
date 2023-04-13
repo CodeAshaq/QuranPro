@@ -3,8 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:quran_pro/app/constants/colors.dart';
+import 'package:quran_pro/app/modules/doa/views/doa_view.dart';
 import 'package:quran_pro/app/modules/home/views/home_view.dart';
-import 'package:quran_pro/app/modules/search/views/search_view.dart';
+import 'package:quran_pro/app/modules/pages/note_add_update_page.dart';
+import 'package:quran_pro/app/modules/pages/note_list_page.dart';
 
 import '../controllers/landing_page_controller.dart';
 
@@ -21,7 +23,9 @@ class LandingPageView extends GetView<LandingPageController> {
               index: controller.tabIndex,
               children: [
                 HomeView(),
-                SearchView(),
+                DoaView(),
+                NoteListPage()
+                // CatatanIbadahView()
 
                 
               ],
@@ -37,9 +41,10 @@ class LandingPageView extends GetView<LandingPageController> {
         currentIndex: controller.tabIndex,
         items: [
           _bottomBarItem(icon: "assets/svgs/quran-icon.svg", label: "Quran"),
-          _bottomBarItem(icon: "assets/svgs/lamp-icon.svg", label: "Tips"),
-          _bottomBarItem(icon: "assets/svgs/pray-icon.svg", label: "Prayer"),
           _bottomBarItem(icon: "assets/svgs/doa-icon.svg", label: "Doa"),
+          _bottomBarItem(icon: "assets/svgs/lamp-icon.svg", label: "Notes"),
+          _bottomBarItem(icon: "assets/svgs/pray-icon.svg", label: "Prayer"),
+          
           _bottomBarItem(
               icon: "assets/svgs/bookmark-icon.svg", label: "Bookmark"),
         ],

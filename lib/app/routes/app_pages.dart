@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
+import 'package:quran_pro/app/modules/pages/note_add_update_page.dart';
+import 'package:quran_pro/app/modules/pages/note_list_page.dart';
 
 import '../modules/detail_surah/bindings/detail_surah_binding.dart';
 import '../modules/detail_surah/views/detail_surah_view.dart';
+import '../modules/doa/bindings/doa_binding.dart';
+import '../modules/doa/views/doa_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/introduction/bindings/introduction_binding.dart';
@@ -10,8 +14,6 @@ import '../modules/landing_page/bindings/landing_page_binding.dart';
 import '../modules/landing_page/views/landing_page_view.dart';
 import '../modules/last_read/bindings/last_read_binding.dart';
 import '../modules/last_read/views/last_read_view.dart';
-import '../modules/search/bindings/search_binding.dart';
-import '../modules/search/views/search_view.dart';
 
 part 'app_routes.dart';
 
@@ -37,11 +39,6 @@ class AppPages {
       binding: DetailSurahBinding(),
     ),
     GetPage(
-      name: _Paths.SEARCH,
-      page: () => const SearchView(),
-      binding: SearchBinding(),
-    ),
-    GetPage(
       name: _Paths.LAST_READ,
       page: () => const LastReadView(),
       binding: LastReadBinding(),
@@ -51,5 +48,17 @@ class AppPages {
       page: () => const LandingPageView(),
       binding: LandingPageBinding(),
     ),
+    GetPage(
+      name: _Paths.DOA,
+      page: () => const DoaView(),
+      binding: DoaBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTE_LIST_PAGE,
+      page: () => const NoteListPage(),
+    ),
+    GetPage(
+        name: _Paths.NOTE_ADD_UPDATE_PAGE,
+        page: () => const NoteAddUpdatePage())
   ];
 }

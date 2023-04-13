@@ -10,6 +10,9 @@ abstract class Routes {
   static const LAST_READ = _Paths.LAST_READ;
   static const LANDING_PAGE = _Paths.LANDING_PAGE;
   static const DOA_PAGE = _Paths.DOA_PAGE;
+  static const DOA = _Paths.DOA;
+  static const NOTE_ADD_UPDATE_PAGE = _Paths.NOTE_ADD_UPDATE_PAGE;
+  static const NOTE_LIST_PAGE = _Paths.NOTE_LIST_PAGE;
 }
 
 abstract class _Paths {
@@ -21,4 +24,7 @@ abstract class _Paths {
   static const LAST_READ = '/last-read';
   static const LANDING_PAGE = '/landing-page';
   static const DOA_PAGE = '/doa-page';
+  static const DOA = '/doa';
+  static const NOTE_ADD_UPDATE_PAGE = '/note-add-update-page';
+  static const NOTE_LIST_PAGE = '/note-list-page';
 }
