@@ -2,21 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_pro/app/constants/colors.dart';
-import 'package:quran_pro/app/data/db/db_note.dart';
+import 'package:quran_pro/app/controllers/note_controllers.dart';
 import 'package:quran_pro/app/modules/pages/note_add_update_page.dart';
 
 class NoteListPage extends StatelessWidget {
   const NoteListPage({Key? key}) : super(key: key);
 
+  static const noteAddUpdatePage = '/note-add-update-page';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Notes'),
-        centerTitle: true,
-        elevation: 0,
-        automaticallyImplyLeading: false
-      ),
+          title: const Text('Notes'),
+          centerTitle: true,
+          elevation: 0,
+          automaticallyImplyLeading: false),
       body: GetX<DbController>(
         builder: (controller) {
           final notes = controller.notes;
@@ -32,26 +33,19 @@ class NoteListPage extends StatelessWidget {
                   controller.deleteNote(note.id!);
                 },
                 child: Card(
-                  color: Get.isDarkMode ? secondary : tertiary,
+                  color: tertiary,
                   child: ListTile(
                     title: Text(
                       note.title,
-                      style: GoogleFonts.poppins(
-                          color: Get.isDarkMode ? background : secondary),
+                      style: GoogleFonts.poppins(color: secondary),
                     ),
                     subtitle: Text(note.description,
-                        style: GoogleFonts.poppins(
-                            color: Get.isDarkMode ? background : secondary)),
+                        style: GoogleFonts.poppins(color: background)),
                     onTap: () async {
                       final selectedNote =
                           await controller.getNoteById(note.id!);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              NoteAddUpdatePage(note: selectedNote),
-                        ),
-                      );
+                      // ignore: use_build_context_synchronously
+                      Get.to(() => NoteAddUpdatePage(note: selectedNote));
                     },
                   ),
                 ),
@@ -61,7 +55,7 @@ class NoteListPage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Get.isDarkMode ? secondary : secondaryDark,
+        backgroundColor: tertiary,
         child: const Icon(Icons.add),
         onPressed: () {
           Get.to(() => const NoteAddUpdatePage());

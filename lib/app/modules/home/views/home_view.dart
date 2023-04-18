@@ -50,10 +50,10 @@ class HomeView extends GetView<HomeController> {
                               height: 20,
                             ),
                             Text(
-                                'Surah',
-                                style: GoogleFonts.poppins(
-                                    fontSize: 20, fontWeight: FontWeight.w500),
-                              ),
+                              'Surah',
+                              style: GoogleFonts.poppins(
+                                  fontSize: 20, fontWeight: FontWeight.w500),
+                            ),
                           ],
                         ),
                       )
@@ -76,7 +76,14 @@ class QuranList extends StatelessWidget {
         future: controller.getSurahList(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Container();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+          if (!snapshot.hasData) {
+            return const Center(
+              child: Text("tidak ada data"),
+            );
           }
           return ListView.builder(
               itemCount: snapshot.data!.length,

@@ -21,7 +21,12 @@ class DetailSurahView extends GetView<DetailSurahController> {
         initialData: null,
         builder: ((context, snapshot) {
           if (!snapshot.hasData) {
-            return const Scaffold();
+            return Scaffold(
+              body: Center(
+                  child: CircularProgressIndicator(
+                color: Get.isDarkMode ? secondary : secondaryDark,
+              )),
+            );
           }
           Surah surah = snapshot.data!;
           return Scaffold(
@@ -120,7 +125,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
         onTap: () => Get.defaultDialog(
             title: "Tafsir",
             titleStyle: const TextStyle(fontWeight: FontWeight.bold),
-            middleText: "${surah.deskripsi}"),
+            middleText: surah.deskripsi),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
           child: Stack(children: [
@@ -227,8 +232,11 @@ class DetailSurahView extends GetView<DetailSurahController> {
         elevation: 0,
         title: Row(children: [
           IconButton(
-              onPressed: (() => Navigator.of(context).pop()),
-              icon: SvgPicture.asset('assets/svgs/back-icon.svg')),
+              onPressed: () => Get.back(),
+              icon: SvgPicture.asset(
+                'assets/svgs/back-icon.svg',
+                color: Get.isDarkMode ? secondary : secondaryDark,
+              )),
           const SizedBox(
             width: 24,
           ),

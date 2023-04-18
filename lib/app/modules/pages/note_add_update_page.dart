@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_pro/app/constants/colors.dart';
-import 'package:quran_pro/app/data/db/db_note.dart';
+import 'package:quran_pro/app/controllers/note_controllers.dart';
 import 'package:quran_pro/app/data/models/note.dart';
 
 class NoteAddUpdatePage extends StatefulWidget {
   final Note? note;
-  static const NOTE_ADD_UPDATE_PAGE = '/note-add-update-page';
+  static const noteAddUpdatePage = '/note-add-update-page';
 
   const NoteAddUpdatePage({Key? key, this.note}) : super(key: key);
 
@@ -57,7 +58,7 @@ class _NoteAddUpdatePageState extends State<NoteAddUpdatePage> {
               width: double.infinity,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Get.isDarkMode ? secondary : secondaryDark,
+                  backgroundColor: tertiary,
                 ),
                 child: const Text('Simpan'),
                 onPressed: () async {
@@ -75,7 +76,7 @@ class _NoteAddUpdatePageState extends State<NoteAddUpdatePage> {
                     );
                     Get.find<DbController>().updateNote(note);
                   }
-                  Navigator.pop(context);
+                  Get.back();
                 },
               ),
             )

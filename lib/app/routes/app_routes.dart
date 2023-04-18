@@ -13,6 +13,7 @@ abstract class Routes {
   static const DOA = _Paths.DOA;
   static const NOTE_ADD_UPDATE_PAGE = _Paths.NOTE_ADD_UPDATE_PAGE;
   static const NOTE_LIST_PAGE = _Paths.NOTE_LIST_PAGE;
+  static const BOOKMARK_PAGE = _Paths.BOOKMARK_PAGE;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const DOA = '/doa';
   static const NOTE_ADD_UPDATE_PAGE = '/note-add-update-page';
   static const NOTE_LIST_PAGE = '/note-list-page';
+  static const BOOKMARK_PAGE = '/bookmark-page';
 }

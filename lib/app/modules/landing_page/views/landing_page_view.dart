@@ -3,9 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:quran_pro/app/constants/colors.dart';
+import 'package:quran_pro/app/modules/bookmark_page/views/bookmark_page_view.dart';
 import 'package:quran_pro/app/modules/doa/views/doa_view.dart';
 import 'package:quran_pro/app/modules/home/views/home_view.dart';
-import 'package:quran_pro/app/modules/pages/note_add_update_page.dart';
 import 'package:quran_pro/app/modules/pages/note_list_page.dart';
 
 import '../controllers/landing_page_controller.dart';
@@ -21,10 +21,11 @@ class LandingPageView extends GetView<LandingPageController> {
           body: SafeArea(
             child: IndexedStack(
               index: controller.tabIndex,
-              children: [
+              children:  [
                 HomeView(),
                 DoaView(),
-                NoteListPage()
+                NoteListPage(),
+                BookmarkPageView()
                 // CatatanIbadahView()
 
                 

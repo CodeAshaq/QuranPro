@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:quran_pro/app/modules/pages/note_add_update_page.dart';
-import 'package:quran_pro/app/modules/pages/note_list_page.dart';
 
+import '../modules/bookmark_page/bindings/bookmark_page_binding.dart';
+import '../modules/bookmark_page/views/bookmark_page_view.dart';
 import '../modules/detail_surah/bindings/detail_surah_binding.dart';
 import '../modules/detail_surah/views/detail_surah_view.dart';
 import '../modules/doa/bindings/doa_binding.dart';
@@ -14,6 +14,8 @@ import '../modules/landing_page/bindings/landing_page_binding.dart';
 import '../modules/landing_page/views/landing_page_view.dart';
 import '../modules/last_read/bindings/last_read_binding.dart';
 import '../modules/last_read/views/last_read_view.dart';
+import '../modules/pages/note_add_update_page.dart';
+import '../modules/pages/note_list_page.dart';
 
 part 'app_routes.dart';
 
@@ -59,6 +61,11 @@ class AppPages {
     ),
     GetPage(
         name: _Paths.NOTE_ADD_UPDATE_PAGE,
-        page: () => const NoteAddUpdatePage())
+        page: () => const NoteAddUpdatePage()),
+    GetPage(
+      name: _Paths.BOOKMARK_PAGE,
+      page: () => const BookmarkPageView(),
+      binding: BookmarkPageBinding(),
+    ),
   ];
 }

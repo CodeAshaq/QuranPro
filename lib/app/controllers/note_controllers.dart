@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:quran_pro/app/data/db/database_helper.dart';
 import 'package:quran_pro/app/data/models/note.dart';

@@ -40,7 +40,6 @@ class DatabaseHelper {
   Future<void> insertNote(Note note) async {
     final Database db = await database;
     await db.insert(_tableName, note.toMap());
-    print('Data saved');
   }
 
   Future<List<Note>> getNotes() async {
