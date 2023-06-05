@@ -57,7 +57,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 12,),
               decoration: BoxDecoration(
                   color: Get.isDarkMode ? tertiary : secondaryDark,
                   borderRadius: BorderRadius.circular(10)),
@@ -77,24 +77,7 @@ class DetailSurahView extends GetView<DetailSurahController> {
                     )),
                   ),
                   const Spacer(),
-                  const Icon(
-                    Icons.share_outlined,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  const Icon(
-                    Icons.play_arrow_outlined,
-                    color: Colors.white,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  const Icon(
-                    Icons.bookmark_outline,
-                    color: Colors.white,
-                  ),
+                  const FavoriteButton()
                 ],
               ),
             ),
@@ -262,4 +245,31 @@ class DetailSurahView extends GetView<DetailSurahController> {
           // )
         ]),
       );
+}
+
+class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({Key? key}) : super(key: key);
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _FavoriteButtonState createState() => _FavoriteButtonState();
+}
+
+class _FavoriteButtonState extends State<FavoriteButton> {
+  bool isFavorite = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(
+        isFavorite ? Icons.favorite : Icons.favorite_border,
+        color: secondary,
+      ),
+      onPressed: () {
+        setState(() {
+          isFavorite = !isFavorite;
+        });
+      },
+    );
+  }
 }

@@ -31,10 +31,10 @@ class DoaController extends GetxController {
     // }
      if (flagExist == false) {
       db.insert("bookmark", {
-        "title": "${doa.title}",
-        "arab": "${doa.arab}",
-        "latinArab": "${doa.latinArab}",
-        "translate": "${doa.translate}"
+        "title": doa.title,
+        "arab": doa.arab,
+        "latinArab": doa.latinArab,
+        "translate": doa.translate
       });
 
       Get.snackbar("Berhasil", "Berhasil menyimpan Doa");

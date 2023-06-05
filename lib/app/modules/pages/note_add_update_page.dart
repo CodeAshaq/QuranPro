@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_pro/app/constants/colors.dart';
 import 'package:quran_pro/app/controllers/note_controllers.dart';
 import 'package:quran_pro/app/data/models/note.dart';

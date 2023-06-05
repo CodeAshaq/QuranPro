@@ -12,7 +12,7 @@ class BookmarkPageView extends GetView<BookmarkPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('BookmarkPageView'),
+          title: const Text('Bookmark'),
           centerTitle: true,
           elevation: 0,
         ),
@@ -56,7 +56,7 @@ class BookmarkPageView extends GetView<BookmarkPageController> {
                                 onPressed: () {
                                   controller.deleteBookmark(data['id']);
                                 },
-                                icon: Icon(Icons.delete),
+                                icon: const Icon(Icons.delete),
                               ),
                               title: Text("${data['title']}"),
                               children: [

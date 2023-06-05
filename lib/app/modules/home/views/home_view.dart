@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_pro/app/constants/colors.dart';
+import 'package:quran_pro/app/controllers/setting_controller.dart';
 import 'package:quran_pro/app/data/models/surah.dart';
 import 'package:quran_pro/app/routes/app_pages.dart';
 
@@ -45,7 +46,7 @@ class HomeView extends GetView<HomeController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Greeting(),
+                            Greeting(),
                             const SizedBox(
                               height: 20,
                             ),
@@ -137,20 +138,14 @@ class QuranList extends StatelessWidget {
 }
 
 class Greeting extends StatelessWidget {
-  const Greeting({super.key});
+  Greeting({super.key});
+  final SettingsController _settingController = Get.put(SettingsController());
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Assalamualaikum",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
         Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
@@ -159,7 +154,7 @@ class Greeting extends StatelessWidget {
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(15),
             child: InkWell(
-              onTap: () => Get.toNamed(Routes.LAST_READ),
+              onTap: () => Get.toNamed(Routes.SETTINGS_PAGE),
               borderRadius: BorderRadius.circular(15),
               child: Stack(children: [
                 Positioned(
@@ -174,37 +169,44 @@ class Greeting extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SvgPicture.asset('assets/svgs/book.svg'),
-                          const SizedBox(
-                            width: 8,
-                          ),
                           Text(
-                            'Last Read',
+                            'Assalamualaikum',
                             style: GoogleFonts.poppins(
                                 color: Colors.white,
-                                fontWeight: FontWeight.w500),
+                                fontWeight: FontWeight.w500,
+                                fontSize: 18),
                           ),
+                          const Icon(Icons.info_outline_rounded)
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Text(
-                        'Al-Fatihah',
-                        style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18),
-                      ),
-                      const SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        'Ayat No: 1',
-                        style: GoogleFonts.poppins(
-                          color: Colors.white,
-                        ),
+                      Obx(
+                        () {
+                          final name = _settingController.username.value;
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                '${name.capitalize}',
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                showGreeting(),
+                                style: GoogleFonts.poppins(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),

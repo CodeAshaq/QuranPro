@@ -14,6 +14,9 @@ class LandingPageView extends GetView<LandingPageController> {
   const LandingPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    if (Get.isDarkMode) {
+      controller.isDark.value = true;
+    }
     return GetBuilder<LandingPageController>(
       builder: (controller) {
         return Scaffold(
@@ -21,12 +24,12 @@ class LandingPageView extends GetView<LandingPageController> {
           body: SafeArea(
             child: IndexedStack(
               index: controller.tabIndex,
-              children:  [
+              children: [
                 HomeView(),
                 DoaView(),
                 NoteListPage(),
-                BookmarkPageView()
-                // CatatanIbadahView()
+                BookmarkPageView(),
+                
 
                 
               ],
@@ -44,8 +47,6 @@ class LandingPageView extends GetView<LandingPageController> {
           _bottomBarItem(icon: "assets/svgs/quran-icon.svg", label: "Quran"),
           _bottomBarItem(icon: "assets/svgs/doa-icon.svg", label: "Doa"),
           _bottomBarItem(icon: "assets/svgs/lamp-icon.svg", label: "Notes"),
-          _bottomBarItem(icon: "assets/svgs/pray-icon.svg", label: "Prayer"),
-          
           _bottomBarItem(
               icon: "assets/svgs/bookmark-icon.svg", label: "Bookmark"),
         ],
