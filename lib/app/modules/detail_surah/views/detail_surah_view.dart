@@ -57,7 +57,9 @@ class DetailSurahView extends GetView<DetailSurahController> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12,),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+              ),
               decoration: BoxDecoration(
                   color: Get.isDarkMode ? tertiary : secondaryDark,
                   borderRadius: BorderRadius.circular(10)),
@@ -77,6 +79,21 @@ class DetailSurahView extends GetView<DetailSurahController> {
                     )),
                   ),
                   const Spacer(),
+                  Obx(() {
+                    final isFavorite = false.obs;
+                    return IconButton(
+                      icon: Icon(
+                        isFavorite.value
+                            ? Icons.favorite
+                            : Icons.favorite_border,
+                        color: secondary,
+                      ),
+                      onPressed: () {
+                        isFavorite.toggle();
+                        controller.addLastRead(surah.nomor);
+                      },
+                    );
+                  }),
                   const FavoriteButton()
                 ],
               ),
@@ -229,20 +246,37 @@ class DetailSurahView extends GetView<DetailSurahController> {
                 GoogleFonts.poppins(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           const Spacer(),
-          // IconButton(
-          //     onPressed: () {
-          //       controller.playAudio(surah.audio);
-          //     },
-          //     icon: Icon(Icons.play_arrow_outlined)),
-          // IconButton(
-          //   onPressed: () {
-          //     controller.addBookmark(surah);
-          //   },
-          //   icon: const Icon(
-          //     Icons.bookmark_outline,
-          //     color: Colors.black,
-          //   ),
-          // )
+          Obx(() => Row(
+                children: [
+                  (controller.kondisiAudio.value == "stop")
+                      ? IconButton(
+                          onPressed: () {
+                            controller.playAudio(surah.audio);
+                          },
+                          icon: Icon(Icons.play_arrow))
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            (controller.kondisiAudio.value == "playing")
+                                ? IconButton(
+                                    onPressed: () {
+                                      controller.pauseAudio();
+                                    },
+                                    icon: const Icon(Icons.pause))
+                                : IconButton(
+                                    onPressed: () {
+                                      controller.resumeAudio();
+                                    },
+                                    icon: const Icon(Icons.play_arrow)),
+                            IconButton(
+                                onPressed: () {
+                                  controller.stopAudio();
+                                },
+                                icon: const Icon(Icons.stop))
+                          ],
+                        ),
+                ],
+              )),
         ]),
       );
 }
