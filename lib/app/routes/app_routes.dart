@@ -15,6 +15,7 @@ abstract class Routes {
   static const BOOKMARK_PAGE = _Paths.BOOKMARK_PAGE;
   static const SETTINGS_PAGE = _Paths.SETTINGS_PAGE;
   static const ABOUT = _Paths.ABOUT;
+  static const LAST_READ = _Paths.LAST_READ;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const BOOKMARK_PAGE = '/bookmark-page';
   static const SETTINGS_PAGE = '/settings-page';
   static const ABOUT = '/about';
+  static const LAST_READ = '/last-read';
 }

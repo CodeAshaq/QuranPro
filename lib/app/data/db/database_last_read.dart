@@ -1,80 +1,61 @@
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
-class SurahDatabaseHelper {
-  static SurahDatabaseHelper instance = SurahDatabaseHelper._();
-  static Database? _database;
+class LastRead {
+  LastRead._private();
 
-  SurahDatabaseHelper._();
+  static LastRead instance = LastRead._private();
 
-  Future<Database> get database async {
-    if (_database != null) return _database!;
-    _database = await _initDatabase();
-    return _database!;
-  }
+  Database? _dbs;
 
-  Future<Database> _initDatabase() async {
-    final path = join(await getDatabasesPath(), 'surah_database.db');
-    return await openDatabase(
-      path,
-      version: 1,
-      onCreate: _createDatabase,
-    );
-  }
-
-  Future<void> _createDatabase(Database db, int version) async {
-    await db.execute('''
-      CREATE TABLE surahs (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        nomor INTEGER,
-        nama TEXT,
-        namaLatin TEXT,
-        jumlahAyat INTEGER,
-        tempatTurun TEXT,
-        arti TEXT,
-        deskripsi TEXT,
-        audio TEXT,
-        status INTEGER
-      )
-    ''');
-    await db.execute('''
-      CREATE TABLE ayat (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        surah INTEGER,
-        nomor INTEGER,
-        ar TEXT,
-        tr TEXT,
-        idn TEXT,
-        surahId INTEGER,
-        FOREIGN KEY (surahId) REFERENCES surahs (id)
-      )
-    ''');
-  }
-
-  Future<int> insertSurah(Map<String, dynamic> surahData) async {
-    final db = await instance.database;
-    return await db.insert('surahs', surahData);
-  }
-
-  Future<int> insertAyat(Map<String, dynamic> ayatData, int surahId) async {
-    final db = await instance.database;
-    ayatData['surahId'] = surahId;
-    return await db.insert('ayat', ayatData);
-  }
-
-  Future<List<int>> getSurahIds() async {
-    final db = await instance.database;
-    final List<Map<String, dynamic>> maps = await db.query('surahs', columns: ['id']);
-    return List.generate(maps.length, (index) => maps[index]['id'] as int);
-  }
-
-  Future<Map<String, dynamic>> getSurahById(int id) async {
-    final db = await instance.database;
-    final List<Map<String, dynamic>> maps =
-        await db.query('surahs', where: 'id = ?', whereArgs: [id]);
-    if (maps.isNotEmpty) {
-      return maps.first;
+  Future<Database> get dbs async {
+    if (_dbs == null) {
+      _dbs = await _initDB();
     }
-    return {};
+    return _dbs!;
   }
+
+  Future _initDB() async {
+    Directory docDir = await getApplicationDocumentsDirectory();
+
+    String path = join(docDir.path, "lastread.db");
+
+    return await openDatabase(path, version: 1,
+        onCreate: (database, version) async {
+      return await database.execute(''' 
+      CREATE TABLE lastread (
+        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+        surah INTEGER NOT NULL,
+        nomor INTEGER NOT NULL,
+        ar TEXT NOT NULL,
+        tr TEXT NOT NULL,
+        idn TEXT NOT NULL,
+        last_read INTEGER DEFAULT 0
+      )
+      ''');
+    });
+  }
+
+  Future closeDB() async {
+    _dbs = await instance.dbs;
+    _dbs!.close();
+  }
+  // Future<Map> getFavoriteById(String id) async {
+  //   final dbs = await _initDB();
+
+  //   List<Map<String, dynamic>> results = await dbs.query(
+  //     'lastread',
+  //     where: 'id = ?',
+  //     whereArgs: [id],
+  //   );
+
+  //   if (results.isNotEmpty) {
+  //     return results.first;
+  //   } else {
+  //     return {};
+  //   }
+  // }
 }

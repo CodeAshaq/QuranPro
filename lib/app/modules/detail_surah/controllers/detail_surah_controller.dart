@@ -5,16 +5,45 @@ import 'package:get/get.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:path/path.dart';
 import 'package:quran_pro/app/data/db/database_last_read.dart';
+import 'package:quran_pro/app/data/models/ayat.dart';
 import 'package:quran_pro/app/data/models/surah.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DetailSurahController extends GetxController {
-  final SurahDatabaseHelper _databaseHelper = SurahDatabaseHelper.instance;
 
-  void addLastRead(int surahId) async {
-    final surahData = await _databaseHelper.getSurahById(surahId);
-    // Lakukan sesuatu dengan data surah yang telah diambil
-    print('Surah: ${surahData['nama']}, ID: $surahId');
+  LastRead database = LastRead.instance;
+  // Future<bool> isFavorited(String id) async {
+  //   final favoritedRestaurant = await database.getFavoriteById(id);
+  //   return favoritedRestaurant.isNotEmpty;
+  // }
+
+  void addBookmark(Ayat ayat) async {
+    Database dbs = await database.dbs;
+
+    bool flagExist = false;
+
+    List checkData = await dbs.query("lastread",
+        where:
+            'surah = "${ayat.surah}" and nomor = "${ayat.nomor}" and ar = "${ayat.ar}" and tr = "${ayat.tr}" and idn = "${ayat.idn}"');
+    if (checkData.length != 0) {
+      flagExist = true;
+    }
+     if (flagExist == false) {
+      dbs.insert("lastread", {
+        "surah": ayat.surah,
+        "nomor": ayat.nomor,
+        "ar": ayat.ar,
+        "tr": ayat.tr,
+        "idn" : ayat.idn
+      });
+
+      Get.snackbar("Berhasil", "Berhasil menyimpan Doa");
+    } else {
+      Get.snackbar("Terjadi Kesalahan", "Doa sudah tersimpan");
+    }
+
+    var data = await dbs.query("lastread");
+    print(data);
   }
 
   RxString kondisiAudio = "stop".obs;

@@ -14,6 +14,8 @@ import '../modules/introduction/bindings/introduction_binding.dart';
 import '../modules/introduction/views/introduction_view.dart';
 import '../modules/landing_page/bindings/landing_page_binding.dart';
 import '../modules/landing_page/views/landing_page_view.dart';
+import '../modules/last_read/bindings/last_read_binding.dart';
+import '../modules/last_read/views/last_read_view.dart';
 import '../modules/pages/note_add_update_page.dart';
 import '../modules/pages/note_list_page.dart';
 import '../modules/pages/settings_page.dart';
@@ -71,6 +73,11 @@ class AppPages {
       name: _Paths.ABOUT,
       page: () => const AboutView(),
       binding: AboutBinding(),
+    ),
+    GetPage(
+      name: _Paths.LAST_READ,
+      page: () => const LastReadView(),
+      binding: LastReadBinding(),
     ),
   ];
 }

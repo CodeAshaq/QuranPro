@@ -19,47 +19,57 @@ class HomeView extends GetView<HomeController> {
       controller.isDark.value = true;
     }
     return Scaffold(
-        appBar: AppBar(
-            title: Text(
-              homeTitle,
-              style: GoogleFonts.poppins(),
-            ),
-            centerTitle: true,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            actions: [
-              IconButton(
-                onPressed: () {
-                  controller.changeThemeMode();
-                },
-                icon: const Icon(Icons.color_lens),
-              )
-            ]),
-        body: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-            ),
-            child: NestedScrollView(
-                headerSliverBuilder: (context, innerBoxIsScrolled) => [
-                      SliverToBoxAdapter(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+      appBar: AppBar(
+          title: Text(
+            homeTitle,
+            style: GoogleFonts.poppins(),
+          ),
+          centerTitle: true,
+          elevation: 0,
+          automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+              onPressed: () {
+                controller.changeThemeMode();
+              },
+              icon: const Icon(Icons.color_lens),
+            )
+          ]),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 24,
+        ),
+        child: NestedScrollView(
+            headerSliverBuilder: (context, innerBoxIsScrolled) => [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Greeting(),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Greeting(),
-                            const SizedBox(
-                              height: 20,
-                            ),
                             Text(
                               'Surah',
                               style: GoogleFonts.poppins(
                                   fontSize: 20, fontWeight: FontWeight.w500),
                             ),
+                            IconButton(
+                                onPressed: () => Get.toNamed(Routes.LAST_READ),
+                                icon: Icon(Icons.bookmark_outline))
                           ],
                         ),
-                      )
-                    ],
-                body: QuranList(controller: controller))));
+                      ],
+                    ),
+                  )
+                ],
+            body: QuranList(controller: controller)),
+      ),
+    );
   }
 }
 

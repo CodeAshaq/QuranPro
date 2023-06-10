@@ -7,6 +7,8 @@ import 'package:quran_pro/app/data/models/ayat.dart';
 import 'package:quran_pro/app/data/models/surah.dart';
 import 'package:quran_pro/app/constants/colors.dart';
 
+import '../../../constants/colors.dart';
+import '../../../constants/colors.dart';
 import '../controllers/detail_surah_controller.dart';
 
 class DetailSurahView extends GetView<DetailSurahController> {
@@ -79,21 +81,35 @@ class DetailSurahView extends GetView<DetailSurahController> {
                     )),
                   ),
                   const Spacer(),
-                  Obx(() {
-                    final isFavorite = false.obs;
-                    return IconButton(
-                      icon: Icon(
-                        isFavorite.value
-                            ? Icons.favorite
-                            : Icons.favorite_border,
-                        color: secondary,
-                      ),
+                  
+                  IconButton(
                       onPressed: () {
-                        isFavorite.toggle();
-                        controller.addLastRead(surah.nomor);
+                        controller.addBookmark(ayat);
                       },
-                    );
-                  }),
+                      icon: const Icon(Icons.bookmark_add_outlined)),
+                  // IconButton(
+                  //     onPressed: () {
+                  //       Get.defaultDialog(
+                  //           title: "BOOKMARK",
+                  //           middleText: "pilih jenis bookmark",
+                  //           actions: [
+                  //             ElevatedButton(
+                  //               onPressed: () {
+                  //                 controller.addBookmark(ayat);
+                  //               },
+                  //               child: Text("Last Read"),
+                  //               style: ElevatedButton.styleFrom(
+                  //                   backgroundColor: primaryDark),
+                  //             ),
+                  //             ElevatedButton(
+                  //               onPressed: () {},
+                  //               child: Text("Bookmark"),
+                  //               style: ElevatedButton.styleFrom(
+                  //                   backgroundColor: primaryDark),
+                  //             ),
+                  //           ]);
+                  //     },
+                  //     icon: Icon(Icons.bookmark_add_outlined)),
                   const FavoriteButton()
                 ],
               ),
@@ -111,6 +127,16 @@ class DetailSurahView extends GetView<DetailSurahController> {
             ),
             const SizedBox(
               height: 16,
+            ),
+            Text(
+              ayat.tr!,
+              style: GoogleFonts.poppins(
+                  color: Get.isDarkMode ? secondary : background,
+                  fontSize: 16,
+                  fontStyle: FontStyle.italic),
+            ),
+            const SizedBox(
+              height: 10,
             ),
             Text(
               ayat.idn!,
