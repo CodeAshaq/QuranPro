@@ -12,8 +12,9 @@ class LastReadView extends GetView<LastReadController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Last Read'),
+          title: const Text('Terakhir Dibaca'),
           centerTitle: true,
+          elevation: 0,
         ),
         body: GetBuilder<LastReadController>(
           builder: (c) {
@@ -63,13 +64,6 @@ class LastReadView extends GetView<LastReadController> {
                                     },
                                     icon: const Icon(Icons.delete),
                                   ),
-                                  Text("${data['nomor']}",
-                                      style: GoogleFonts.poppins(
-                                        color: Get.isDarkMode
-                                            ? primaryDark
-                                            : secondary,
-                                        fontSize: 20,
-                                      )),
                                   Expanded(
                                       child: Container(
                                     padding: const EdgeInsets.only(bottom: 8),
@@ -111,6 +105,16 @@ class LastReadView extends GetView<LastReadController> {
                                                       ? primaryDark
                                                       : secondary,
                                                   fontSize: 16)),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 8, right: 8, top: 5),
+                                          child: Text(
+                                              "*Terakhir dibaca pada surah ${data['surah']}, ayat ke ${data['nomor']} ",
+                                              style: GoogleFonts.poppins(
+                                                  color: bluesky,
+                                                  fontSize: 12,
+                                                  fontStyle: FontStyle.italic)),
                                         )
                                       ],
                                     ),

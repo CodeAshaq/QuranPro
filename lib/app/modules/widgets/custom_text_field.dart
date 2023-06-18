@@ -17,21 +17,7 @@ class CustomTextField extends StatelessWidget {
   final VoidCallback? onTap;
   final bool? readOnly;
 
-  Icon? _getRightIcon() {
-    if (label == 'Time') {
-      return Icon(
-        Icons.access_time_rounded,
-        color: Colors.grey.withOpacity(0.5),
-      );
-    }
-    if (label == 'Date') {
-      return Icon(
-        Icons.date_range,
-        color: Colors.grey.withOpacity(0.5),
-      );
-    }
-    return null;
-  }
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +35,6 @@ class CustomTextField extends StatelessWidget {
             contentPadding: const EdgeInsets.all(14),
             hintText: hintText,
             hintStyle: kTextStyleBoldGrey(18),
-            suffixIcon: _getRightIcon(),
             border: InputBorder.none,
             enabledBorder: _borders(),
             focusedBorder: _borders(),
@@ -66,7 +51,7 @@ class CustomTextField extends StatelessWidget {
       borderRadius: BorderRadius.circular(16),
       borderSide: BorderSide(
         width: 1,
-        color: Colors.amber.withOpacity(0.3),
+        color: secondaryDark.withOpacity(0.3),
       ),
     );
   }

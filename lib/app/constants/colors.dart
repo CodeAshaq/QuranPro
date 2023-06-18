@@ -8,6 +8,7 @@ Color gray = const Color(0xFF8789A3);
 Color secondaryDark = const Color.fromARGB(255, 77, 117, 9);
 Color primaryDark = const Color(0xFF629C59);
 Color tertiary = const Color(0xFF9AC850);
+Color bluesky = const Color.fromARGB(255, 0, 26, 139);
 
 final TextStyle kBodyText = GoogleFonts.poppins(
     fontSize: 13,
@@ -77,11 +78,11 @@ String formattingTimeOfDay(TimeOfDay timeOfDay) {
 }
 
 TextStyle kTextStyleBoldBlack(double size) {
-  return GoogleFonts.arimaMadurai(
+  return GoogleFonts.poppins(
     textStyle: TextStyle(
       fontSize: size,
       color: Colors.black,
-      fontWeight: FontWeight.bold,
+      fontWeight: FontWeight.normal,
     ),
   );
 }

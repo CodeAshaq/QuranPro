@@ -60,7 +60,7 @@ class HomeView extends GetView<HomeController> {
                             ),
                             IconButton(
                                 onPressed: () => Get.toNamed(Routes.LAST_READ),
-                                icon: Icon(Icons.bookmark_outline))
+                                icon: const Icon(Icons.bookmark_outline))
                           ],
                         ),
                       ],
@@ -174,7 +174,7 @@ class Greeting extends StatelessWidget {
                         opacity: 0.7,
                         child: SvgPicture.asset('assets/svgs/quran.svg'))),
                 Padding(
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -197,12 +197,21 @@ class Greeting extends StatelessWidget {
                           return Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                '${name.capitalize}',
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 20,
-                                ),
+                              Row(
+                                children: [
+                                  Text(
+                                    '${name.capitalize}',
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.edit,
+                                    size: 22,
+                                    color: secondaryDark,
+                                  )
+                                ],
                               ),
                               const SizedBox(
                                 height: 4,

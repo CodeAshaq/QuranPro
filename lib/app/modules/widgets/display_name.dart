@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:quran_pro/app/constants/colors.dart';
 import 'package:quran_pro/app/modules/widgets/custom_button.dart';
 import 'package:quran_pro/app/modules/widgets/custom_text_field.dart';
@@ -19,7 +20,7 @@ class DisplayName extends StatelessWidget {
         Obx(() {
           return Text(
             _settingController.username.value,
-            style: kTextStyleBoldBlack(24),
+            style: GoogleFonts.poppins(fontSize: 20, color: bluesky),
             maxLines: 1,
           );
         }),

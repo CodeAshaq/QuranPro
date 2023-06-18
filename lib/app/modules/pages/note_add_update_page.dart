@@ -34,7 +34,7 @@ class _NoteAddUpdatePageState extends State<NoteAddUpdatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: const Text('Notes'),
+          title: const Text('Catatan'),
           centerTitle: true,
           elevation: 0,),
       body: Padding(

@@ -7,8 +7,6 @@ import 'package:quran_pro/app/data/models/ayat.dart';
 import 'package:quran_pro/app/data/models/surah.dart';
 import 'package:quran_pro/app/constants/colors.dart';
 
-import '../../../constants/colors.dart';
-import '../../../constants/colors.dart';
 import '../controllers/detail_surah_controller.dart';
 
 class DetailSurahView extends GetView<DetailSurahController> {
@@ -81,12 +79,12 @@ class DetailSurahView extends GetView<DetailSurahController> {
                     )),
                   ),
                   const Spacer(),
-                  
+
                   IconButton(
                       onPressed: () {
                         controller.addBookmark(ayat);
                       },
-                      icon: const Icon(Icons.bookmark_add_outlined)),
+                      icon: const Icon(Icons.bookmark_outline)),
                   // IconButton(
                   //     onPressed: () {
                   //       Get.defaultDialog(
@@ -110,7 +108,6 @@ class DetailSurahView extends GetView<DetailSurahController> {
                   //           ]);
                   //     },
                   //     icon: Icon(Icons.bookmark_add_outlined)),
-                  const FavoriteButton()
                 ],
               ),
             ),
@@ -239,6 +236,28 @@ class DetailSurahView extends GetView<DetailSurahController> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Container(
+                        width: 4,
+                        height: 4,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(2),
+                            color: Colors.white),
+                      ),
+                      const SizedBox(
+                        width: 5,
+                      ),
+                      Text(
+                        "Tafsir",
+                        style: GoogleFonts.poppins(
+                          color: bluesky,
+                          fontWeight: FontWeight.w500,
+                          decoration: TextDecoration.underline,
+                          fontStyle: FontStyle.italic 
+                        ),
+                      ),
                     ],
                   ),
                   const SizedBox(
@@ -305,31 +324,4 @@ class DetailSurahView extends GetView<DetailSurahController> {
               )),
         ]),
       );
-}
-
-class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({Key? key}) : super(key: key);
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _FavoriteButtonState createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  bool isFavorite = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: secondary,
-      ),
-      onPressed: () {
-        setState(() {
-          isFavorite = !isFavorite;
-        });
-      },
-    );
-  }
 }

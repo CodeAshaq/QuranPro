@@ -12,7 +12,7 @@ class BookmarkPageView extends GetView<BookmarkPageController> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Bookmark'),
+          title: const Text('Tersimpan'),
           centerTitle: true,
           elevation: 0,
         ),
