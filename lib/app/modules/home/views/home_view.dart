@@ -58,9 +58,17 @@ class HomeView extends GetView<HomeController> {
                               style: GoogleFonts.poppins(
                                   fontSize: 20, fontWeight: FontWeight.w500),
                             ),
-                            IconButton(
+                            CircleAvatar(
+                              backgroundColor: Get.isDarkMode ? grayTranparent: primaryDark ,
+                              radius: 20,
+                              child: IconButton(
                                 onPressed: () => Get.toNamed(Routes.LAST_READ),
-                                icon: const Icon(Icons.bookmark_outline))
+                                icon: const Icon(
+                                  Icons.bookmark_outline,
+                                ),
+                                color: secondary,
+                              ),
+                            )
                           ],
                         ),
                       ],

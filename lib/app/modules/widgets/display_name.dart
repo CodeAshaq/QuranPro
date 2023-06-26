@@ -42,15 +42,15 @@ class DisplayName extends StatelessWidget {
             height: Get.height * 0.25,
             child: Column(
               children: [
-                Text('Enter Your Name', style: kTextStyleBoldBlack(20)),
+                Text('Tulis Nama Mu', style: kTextStyleBoldBlack(20)),
                 CustomTextField(
                   controller: _nameController,
                   label: '',
-                  hintText: 'Write Your Name here...',
+                  hintText: 'Tuliskan Di sini',
                 ),
                 CustomButton(
                   onTap: _saveNameToStorage,
-                  label: 'Save',
+                  label: 'Simpan',
                 ),
               ],
             ),
@@ -67,8 +67,8 @@ class DisplayName extends StatelessWidget {
       Get.back();
     } else {
       Get.snackbar(
-        'Name is Empty',
-        "Name can't be empty Please!",
+        'Nama masih kosonh',
+        "Nama tidak boleh kosong!",
         colorText: Colors.white,
         backgroundColor: Colors.red,
         snackPosition: SnackPosition.BOTTOM,

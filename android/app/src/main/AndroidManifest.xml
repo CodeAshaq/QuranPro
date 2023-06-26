@@ -2,8 +2,8 @@
     package="com.example.quran_pro">
     <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="Quran Indonesia"
-        android:name="${applicationName}"
+        android:label="Al Quran: Bahasa Indonesia"
+        android:name="${Al Quran: Bahasa Indonesia}"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

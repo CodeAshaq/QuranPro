@@ -33,7 +33,7 @@ class AboutView extends GetView<AboutController> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 Text(
-                  'Al-Quran Indonesia',
+                  'Al-Quran: \n Bahasa Indonesia',
                   textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     color: primaryDark,

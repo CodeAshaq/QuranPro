@@ -9,6 +9,8 @@ Color secondaryDark = const Color.fromARGB(255, 77, 117, 9);
 Color primaryDark = const Color(0xFF629C59);
 Color tertiary = const Color(0xFF9AC850);
 Color bluesky = const Color.fromARGB(255, 0, 26, 139);
+Color grayTranparent = const Color.fromARGB(123, 255, 255, 255);
+Color tertiaryTranparent = const Color.fromARGB(118, 154, 200, 80);
 
 final TextStyle kBodyText = GoogleFonts.poppins(
     fontSize: 13,

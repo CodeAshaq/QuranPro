@@ -37,9 +37,9 @@ class DetailSurahController extends GetxController {
         "idn" : ayat.idn
       });
 
-      Get.snackbar("Berhasil", "Berhasil menyimpan Doa");
+      Get.snackbar("Berhasil", "Berhasil ditambahkan ke Terakhir Dibaca");
     } else {
-      Get.snackbar("Terjadi Kesalahan", "Doa sudah tersimpan");
+      Get.snackbar("Terjadi Kesalahan", "Ayat sudah ditambahkan");
     }
 
     var data = await dbs.query("lastread");
